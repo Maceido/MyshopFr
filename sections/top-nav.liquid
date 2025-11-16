@@ -21,23 +21,11 @@
         {% endfor %}
       {% else %}
         <!-- Fallback static menu if no menu configured -->
-        <li class="top-nav__item">
-          <a href="#" class="top-nav__link">Women's Clothing</a>
-          <ul class="top-nav__submenu">
-            <li><a href="#">Outerwear & Jackets</a></li>
-            <li><a href="#">Blazers</a></li>
-            <li><a href="#">Wool & Blend</a></li>
-            <li><a href="#">Women's Padded Jackets</a></li>
-            <li><a href="#">Woman Trench</a></li>
-            <li><a href="#">Basic Jacket</a></li>
-            <li><a href="#">Leather & Suede</a></li>
-            <li><a href="#">Real Fur</a></li>
-          </ul>
-        </li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Pet Supplies</a></li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Home, Garden & Furniture</a></li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Health, Beauty & Hair</a></li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Jewelry & Watches</a></li>
+        {% assign fallback = 'Automotive & Motorcycle::automotive-motorcycle|Home Improvement::home-improvement|Electronics::electronics|Toys::toys|Sports & Outdoors::sports-outdoors|Pets::pets|Home, Garden & Furniture::home-garden-furniture|Jewelry & Watches::jewelry-watches|Bags & Shoes::bags-shoes|Clothing & Apparel::clothing-apparel' | split: '|' %}
+        {% for entry in fallback %}
+          {% assign parts = entry | split: '::' %}
+          <li class="top-nav__item"><a href="/collections/{{ parts[1] }}" class="top-nav__link">{{ parts[0] }}</a></li>
+        {% endfor %}
       {% endif %}
 
       <li class="top-nav__item top-nav__more" aria-hidden="true">

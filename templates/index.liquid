@@ -4,71 +4,23 @@
   <div class="announcement-bar">{{ settings.announcement_text }}</div>
 {% endif %}
 
-<section class="hero" aria-label="Storefront introduction">
-  <div>
-    <p class="hero__eyebrow">{{ 'general.hero_eyebrow' | t }}</p>
-    <h1>{{ 'general.hero_heading' | t }}</h1>
-    <p>{{ 'general.hero_subtext' | t }}</p>
-    <div class="hero__cta-group">
-      <a class="cta" href="/collections/all">{{ 'general.shop_cta' | t }}</a>
-      <a class="cta secondary" href="#collections">{{ 'general.view_collections' | t }}</a>
-    </div>
-    <div class="feature-grid">
-      <article class="feature-card">
-        <h3>{{ 'general.feature_one_heading' | t }}</h3>
-        <p>{{ 'general.feature_one_copy' | t }}</p>
-      </article>
-      <article class="feature-card">
-        <h3>{{ 'general.feature_two_heading' | t }}</h3>
-        <p>{{ 'general.feature_two_copy' | t }}</p>
-      </article>
-      <article class="feature-card">
-        <h3>{{ 'general.feature_three_heading' | t }}</h3>
-        <p>{{ 'general.feature_three_copy' | t }}</p>
-      </article>
-    </div>
-  </div>
-  <div class="hero__panel" aria-label="Store highlights">
-    <div class="hero__stat">
-      <strong>{{ 'general.stat_products' | t }}</strong>
-      <small>{{ 'general.stat_products_copy' | t }}</small>
-    </div>
-    <div class="hero__stat">
-      <strong>{{ 'general.stat_shipping' | t }}</strong>
-      <small>{{ 'general.stat_shipping_copy' | t }}</small>
-    </div>
-    <div class="hero__stat">
-      <strong>{{ 'general.stat_support' | t }}</strong>
-      <small>{{ 'general.stat_support_copy' | t }}</small>
-    </div>
-  </div>
+<section class="hero">
+  <h1>{{ 'general.hero_heading' | t }}</h1>
+  <p>{{ 'general.hero_subtext' | t }}</p>
+  <a class="cta" href="/collections/all">{{ 'general.shop_cta' | t }}</a>
 </section>
 
-<div class="section-heading" id="collections">
-  <div>
-    <h2>{{ 'general.collection_heading' | t }}</h2>
-    <p>{{ 'general.collection_subheading' | t }}</p>
-  </div>
-</div>
-<div class="collection-grid" aria-label="Shop by collection">
-  {% assign collections_list = (
-    'Automotive & Motorcycle::automotive-motorcycle|Home Improvement::home-improvement|Electronics::electronics|Toys::toys|Sports & Outdoors::sports-outdoors|Pets::pets|Home, Garden & Furniture::home-garden-furniture|Jewelry & Watches::jewelry-watches|Bags & Shoes::bags-shoes|Clothing & Apparel::clothing-apparel'
-    ) | split: '|' %}
-
-  {% for item in collections_list %}
-    {% assign parts = item | split: '::' %}
-    {% assign title = parts[0] %}
-    {% assign handle = parts[1] %}
-    <article class="collection-card">
-      <a href="/collections/{{ handle }}">
-        <div class="collection-card__overlay" aria-hidden="true"></div>
-        <p class="collection-card__label">{{ title }}</p>
-        <p class="collection-card__meta">{{ 'general.collection_card_copy' | t }}</p>
-      </a>
-    </article>
-  {% endfor %}
-</div>
-
-<footer class="page-footer">
-  {{ 'general.footer_note' | t }}
-</footer>
+<section class="feature-grid" aria-label="Selling points">
+  <article class="feature-card">
+    <h3>{{ 'general.feature_one_heading' | t }}</h3>
+    <p>{{ 'general.feature_one_copy' | t }}</p>
+  </article>
+  <article class="feature-card">
+    <h3>{{ 'general.feature_two_heading' | t }}</h3>
+    <p>{{ 'general.feature_two_copy' | t }}</p>
+  </article>
+  <article class="feature-card">
+    <h3>{{ 'general.feature_three_heading' | t }}</h3>
+    <p>{{ 'general.feature_three_copy' | t }}</p>
+  </article>
+</section>

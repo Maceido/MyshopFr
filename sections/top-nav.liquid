@@ -20,11 +20,19 @@
           </li>
         {% endfor %}
       {% else %}
-        <!-- Fallback static menu if no menu configured -->
-        {% assign fallback = 'Automotive & Motorcycle::automotive-motorcycle|Home Improvement::home-improvement|Electronics::electronics|Toys::toys|Sports & Outdoors::sports-outdoors|Pets::pets|Home, Garden & Furniture::home-garden-furniture|Jewelry & Watches::jewelry-watches|Bags & Shoes::bags-shoes|Clothing & Apparel::clothing-apparel' | split: '|' %}
+        <!-- Fallback static menu with hoverable subcategories -->
+        {% assign fallback = 'Automotive & Motorcycle::automotive-motorcycle::Car care kits;Riding gear;Garage essentials|Home Improvement::home-improvement::Tools & safety;Lighting;Smart home|Electronics::electronics::Mobile & wearables;Audio & video;Workspace|Toys::toys::STEM kits;Outdoor play;Collectibles|Sports & Outdoors::sports-outdoors::Fitness;Hiking & camping;Cycling|Pets::pets::Dogs;Cats;Training & care|Home, Garden & Furniture::home-garden-furniture::Decor accents;Kitchen & dining;Outdoor living|Jewelry & Watches::jewelry-watches::Minimalist jewelry;Statement pieces;Watches|Bags & Shoes::bags-shoes::Sneakers;Bags;Travel gear|Clothing & Apparel::clothing-apparel::Casual basics;Activewear;Evening & formal' | split: '|' %}
         {% for entry in fallback %}
           {% assign parts = entry | split: '::' %}
-          <li class="top-nav__item"><a href="/collections/{{ parts[1] }}" class="top-nav__link">{{ parts[0] }}</a></li>
+          {% assign subcats = parts[2] | split: ';' %}
+          <li class="top-nav__item">
+            <a href="/collections/{{ parts[1] }}" class="top-nav__link">{{ parts[0] }}</a>
+            <ul class="top-nav__submenu">
+              {% for sub in subcats %}
+                <li><a href="/collections/{{ parts[1] }}?filter={{ sub | handle }}">{{ sub }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
         {% endfor %}
       {% endif %}
 

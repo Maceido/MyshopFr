@@ -16,11 +16,16 @@ document.addEventListener('DOMContentLoaded', function(){
     });
     moreList.innerHTML = '';
     moreLi.setAttribute('aria-hidden','true');
+    moreLi.style.display = 'none';
   }
 
   function recompute(){
-    // only run on desktop
+    // only run on desktop and when the viewport is constrained
     if(window.innerWidth <= 880){
+      resetMore();
+      return;
+    }
+    if(window.innerWidth > 1200){
       resetMore();
       return;
     }
@@ -49,11 +54,13 @@ document.addEventListener('DOMContentLoaded', function(){
           r.parentNode.removeChild(r);
         });
         moreLi.setAttribute('aria-hidden','false');
+        moreLi.style.display = '';
         break;
       }
     }
     if(!moreList.children.length){
       moreLi.setAttribute('aria-hidden','true');
+      moreLi.style.display = 'none';
     }
   }
 

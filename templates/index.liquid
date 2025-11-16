@@ -1,0 +1,26 @@
+{% section 'top-nav' %}
+
+{% if settings.announcement_text != blank %}
+  <div class="announcement-bar">{{ settings.announcement_text }}</div>
+{% endif %}
+
+<section class="hero">
+  <h1>{{ 'general.hero_heading' | t }}</h1>
+  <p>{{ 'general.hero_subtext' | t }}</p>
+  <a class="cta" href="/collections/all">{{ 'general.shop_cta' | t }}</a>
+</section>
+
+<section class="feature-grid" aria-label="Selling points">
+  <article class="feature-card">
+    <h3>{{ 'general.feature_one_heading' | t }}</h3>
+    <p>{{ 'general.feature_one_copy' | t }}</p>
+  </article>
+  <article class="feature-card">
+    <h3>{{ 'general.feature_two_heading' | t }}</h3>
+    <p>{{ 'general.feature_two_copy' | t }}</p>
+  </article>
+  <article class="feature-card">
+    <h3>{{ 'general.feature_three_heading' | t }}</h3>
+    <p>{{ 'general.feature_three_copy' | t }}</p>
+  </article>
+</section>

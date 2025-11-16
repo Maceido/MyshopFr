@@ -4,7 +4,8 @@
     <div class="brand">{{ shop.name }}</div>
     <button class="top-nav__mobile-toggle" aria-expanded="false" aria-controls="top-nav-list">☰</button>
     <ul id="top-nav-list" class="top-nav__list">
-      {% assign menu = linklists[section.settings.menu] %}
+      {% assign chosen_menu = section.settings.menu | default: settings.main_menu %}
+      {% assign menu = linklists[chosen_menu] %}
       {% if menu and menu.links.size > 0 %}
         {% for link in menu.links %}
           <li class="top-nav__item">

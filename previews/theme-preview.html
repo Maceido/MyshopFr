@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyshopFr Theme Preview</title>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <link rel="stylesheet" href="../assets/top-nav.css">
+</head>
+<body class="theme-shell">
+  <div class="theme-shell__inner">
+    <nav class="top-nav" aria-label="Main navigation">
+      <div class="top-nav__inner">
+        <div class="brand">MyshopFr</div>
+        <button class="top-nav__mobile-toggle" aria-expanded="false" aria-controls="top-nav-list">☰</button>
+        <ul id="top-nav-list" class="top-nav__list">
+          <li class="top-nav__item">
+            <a class="top-nav__link" href="#">Automotive & Motorcycle</a>
+            <ul class="top-nav__submenu">
+              <li><a href="#">Car care kits</a></li>
+              <li><a href="#">Riding gear</a></li>
+              <li><a href="#">Garage essentials</a></li>
+            </ul>
+          </li>
+          <li class="top-nav__item">
+            <a class="top-nav__link" href="#">Home Improvement</a>
+            <ul class="top-nav__submenu">
+              <li><a href="#">Tools & safety</a></li>
+              <li><a href="#">Lighting</a></li>
+              <li><a href="#">Smart home</a></li>
+            </ul>
+          </li>
+          <li class="top-nav__item">
+            <a class="top-nav__link" href="#">Electronics</a>
+            <ul class="top-nav__submenu">
+              <li><a href="#">Mobile & wearables</a></li>
+              <li><a href="#">Audio & video</a></li>
+              <li><a href="#">Workspace</a></li>
+            </ul>
+          </li>
+          <li class="top-nav__item">
+            <a class="top-nav__link" href="#">Toys</a>
+            <ul class="top-nav__submenu">
+              <li><a href="#">STEM kits</a></li>
+              <li><a href="#">Outdoor play</a></li>
+              <li><a href="#">Collectibles</a></li>
+            </ul>
+          </li>
+          <li class="top-nav__item">
+            <a class="top-nav__link" href="#">Sports & Outdoors</a>
+            <ul class="top-nav__submenu">
+              <li><a href="#">Fitness</a></li>
+              <li><a href="#">Hiking & camping</a></li>
+              <li><a href="#">Cycling</a></li>
+            </ul>
+          </li>
+          <li class="top-nav__item top-nav__more" aria-hidden="true">
+            <button class="top-nav__more-toggle" aria-expanded="false">More ▾</button>
+            <ul class="top-nav__more-list" aria-label="More categories"></ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="category-strip" id="collections" data-category-strip aria-label="Shop by category">
+      <div class="category-strip__header">
+        <h2 class="category-strip__title">Shop by category</h2>
+        <p class="category-strip__note">Hover a category to reveal subcategories, then click to filter the grid below.</p>
+      </div>
+    </section>
+
+    <div class="announcement-bar">Welcome to MyshopFr!</div>
+
+    <section class="hero" aria-label="Storefront introduction">
+      <div>
+        <p class="hero__eyebrow">Curated dropshipping collections</p>
+        <h1>White-glove shopping experience without the clutter</h1>
+        <p>Keep everything bright, modern, and trustworthy with hoverable categories, precise filters, and a no-surprises checkout preview.</p>
+        <div class="hero__cta-group">
+          <a class="cta" href="#">Shop best sellers</a>
+          <a class="cta secondary" href="#collections">Browse categories</a>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Clean, professional tone</h3>
+            <p>Crisp spacing, white background, and friendly accents that stay far from “scammy.”</p>
+          </article>
+          <article class="feature-card">
+            <h3>Hover to drill down</h3>
+            <p>Every collection reveals hand-picked subcategories to keep shoppers oriented.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Quick-buy overlay</h3>
+            <p>Customers can set quantity, options, and see totals without leaving the page.</p>
+          </article>
+        </div>
+      </div>
+      <div class="hero__panel" aria-label="Store highlights">
+        <div class="hero__stat">
+          <strong>10 curated categories</strong>
+          <small>From Automotive to Apparel.</small>
+        </div>
+        <div class="hero__stat">
+          <strong>Instant product updates</strong>
+          <small>Filter without ever opening a new page.</small>
+        </div>
+        <div class="hero__stat">
+          <strong>Transparent checkout</strong>
+          <small>Buy now preview with options & totals.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-showcase" aria-label="Featured items">
+      <div class="product-showcase__header">
+        <h3 class="product-showcase__title">Featured picks ready to ship</h3>
+        <p class="product-showcase__filter">Showing: <strong data-active-filter>All</strong></p>
+      </div>
+      <div class="product-grid" data-product-grid></div>
+    </section>
+
+    <div class="product-modal" data-product-modal role="dialog" aria-modal="true" aria-label="Product quick view">
+      <div class="product-modal__backdrop" data-modal-backdrop></div>
+      <div class="product-modal__dialog">
+        <button class="product-modal__close" aria-label="Close" data-modal-close>&times;</button>
+        <div class="product-modal__media">
+          <img src="" alt="" data-modal-image>
+        </div>
+        <div class="product-modal__body">
+          <p class="product-modal__category" data-modal-category></p>
+          <h3 class="product-modal__title" data-modal-title></h3>
+          <p class="product-modal__price" data-modal-price></p>
+          <div class="product-modal__options" data-modal-options></div>
+          <label for="modal-quantity-preview">Quantity</label>
+          <input id="modal-quantity-preview" data-modal-quantity type="number" min="1" value="1">
+          <div class="product-modal__actions">
+            <button class="button-secondary" data-add-cart>Add to cart</button>
+            <button class="button-primary" data-buy-now>Buy now</button>
+          </div>
+          <p class="product-modal__summary" data-modal-summary></p>
+          <div class="checkout-preview" data-checkout-preview>
+            <img src="" alt="Selected product" data-checkout-image>
+            <div class="checkout-preview__details">
+              <strong data-checkout-title></strong>
+              <p data-checkout-meta></p>
+              <p data-checkout-price></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      Designed for modern dropshipping — customize colors, menus, and sections in Theme settings.
+    </footer>
+  </div>
+  <script src="../assets/top-nav.js"></script>
+  <script src="../assets/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "general": {
+    "hero_heading": "Launch a polished dropshipping storefront in minutes",
+    "hero_subtext": "Use this starter theme as a clean foundation for your products, pages, and sections.",
+    "shop_cta": "Start shopping",
+    "feature_one_heading": "Responsive mega nav",
+    "feature_one_copy": "Adaptive navigation built for large catalogs, with mobile-friendly accordions.",
+    "feature_two_heading": "Performance-first layout",
+    "feature_two_copy": "Lightweight styles and scripts to keep your storefront fast and focused.",
+    "feature_three_heading": "Easy to extend",
+    "feature_three_copy": "Add sections, templates, and snippets without wrestling with boilerplate.",
+    "404_title": "Page not found",
+    "404_body": "The page you're looking for doesn't exist."
+  }
+}

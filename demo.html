@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Top Nav Demo</title>
+  <link rel="stylesheet" href="assets/top-nav.css">
+</head>
+<body>
+  <!-- Static demo copy of the Shopify section for local testing -->
+  <nav class="top-nav" aria-label="Main navigation">
+    <div class="top-nav__inner">
+      <div class="brand">Your Shop</div>
+      <button class="top-nav__mobile-toggle" aria-expanded="false" aria-controls="top-nav-list">☰</button>
+      <ul id="top-nav-list" class="top-nav__list">
+        <li class="top-nav__item">
+          <a href="#" class="top-nav__link">Women's Clothing</a>
+          <ul class="top-nav__submenu">
+            <li><a href="#">Outerwear & Jackets</a></li>
+            <li><a href="#">Blazers</a></li>
+            <li><a href="#">Wool & Blend</a></li>
+            <li><a href="#">Woman Trench</a></li>
+            <li><a href="#">Basic Jacket</a></li>
+            <li><a href="#">Leather & Suede</a></li>
+            <li><a href="#">Real Fur</a></li>
+          </ul>
+        </li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Pet Supplies</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Home, Garden & Furniture</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Health, Beauty & Hair</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Jewelry & Watches</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Men's Clothing</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Bags & Shoes</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Toys, Kids & Babies</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Sports & Outdoors</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Consumer Electronics</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Home Improvement</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Automobiles & Motorcycles</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Phones & Accessories</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Computer & Office</a></li>
+        <li class="top-nav__item top-nav__more" aria-hidden="true">
+          <button class="top-nav__more-toggle" aria-expanded="false">More ▾</button>
+          <ul class="top-nav__more-list" aria-label="More categories"></ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main style="padding:40px;color:#cfcfcf">Resize the window to see overflow behavior. Hover 'Women's Clothing' to open subs.</main>
+
+  <script src="assets/top-nav.js"></script>
+</body>
+</html>

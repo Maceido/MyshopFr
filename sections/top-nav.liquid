@@ -1,0 +1,63 @@
+<link href="{{ 'top-nav.css' | asset_url }}" rel="stylesheet" />
+<nav class="top-nav" aria-label="Main navigation">
+  <div class="top-nav__inner">
+    <div class="brand">{{ shop.name }}</div>
+    <button class="top-nav__mobile-toggle" aria-expanded="false" aria-controls="top-nav-list">☰</button>
+    <ul id="top-nav-list" class="top-nav__list">
+      {% assign menu = linklists[section.settings.menu] %}
+      {% if menu and menu.links.size > 0 %}
+        {% for link in menu.links %}
+          <li class="top-nav__item">
+            <a href="{{ link.url }}" class="top-nav__link" tabindex="0">{{ link.title }}</a>
+            {% if link.links and link.links.size > 0 %}
+              <ul class="top-nav__submenu">
+                {% for child in link.links %}
+                  <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% else %}
+        <!-- Fallback static menu if no menu configured -->
+        <li class="top-nav__item">
+          <a href="#" class="top-nav__link">Women's Clothing</a>
+          <ul class="top-nav__submenu">
+            <li><a href="#">Outerwear & Jackets</a></li>
+            <li><a href="#">Blazers</a></li>
+            <li><a href="#">Wool & Blend</a></li>
+            <li><a href="#">Women's Padded Jackets</a></li>
+            <li><a href="#">Woman Trench</a></li>
+            <li><a href="#">Basic Jacket</a></li>
+            <li><a href="#">Leather & Suede</a></li>
+            <li><a href="#">Real Fur</a></li>
+          </ul>
+        </li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Pet Supplies</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Home, Garden & Furniture</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Health, Beauty & Hair</a></li>
+        <li class="top-nav__item"><a href="#" class="top-nav__link">Jewelry & Watches</a></li>
+      {% endif %}
+
+      <li class="top-nav__item top-nav__more" aria-hidden="true">
+        <button class="top-nav__more-toggle" aria-expanded="false">More ▾</button>
+        <ul class="top-nav__more-list" aria-label="More categories"></ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<script src="{{ 'top-nav.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Top Navigation (Custom)",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu"
+    }
+  ],
+  "presets": [{"name": "Top Navigation"}]
+}
+{% endschema %}

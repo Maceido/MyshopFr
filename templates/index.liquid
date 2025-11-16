@@ -1,0 +1,96 @@
+{% section 'top-nav' %}
+
+{% if settings.announcement_text != blank %}
+  <div class="announcement-bar">{{ settings.announcement_text }}</div>
+{% endif %}
+
+<section class="hero" aria-label="Storefront introduction">
+  <div>
+    <p class="hero__eyebrow">{{ 'general.hero_eyebrow' | t }}</p>
+    <h1>{{ 'general.hero_heading' | t }}</h1>
+    <p>{{ 'general.hero_subtext' | t }}</p>
+    <div class="hero__cta-group">
+      <a class="cta" href="/collections/all">{{ 'general.shop_cta' | t }}</a>
+      <a class="cta secondary" href="#collections">{{ 'general.view_collections' | t }}</a>
+    </div>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <h3>{{ 'general.feature_one_heading' | t }}</h3>
+        <p>{{ 'general.feature_one_copy' | t }}</p>
+      </article>
+      <article class="feature-card">
+        <h3>{{ 'general.feature_two_heading' | t }}</h3>
+        <p>{{ 'general.feature_two_copy' | t }}</p>
+      </article>
+      <article class="feature-card">
+        <h3>{{ 'general.feature_three_heading' | t }}</h3>
+        <p>{{ 'general.feature_three_copy' | t }}</p>
+      </article>
+    </div>
+  </div>
+  <div class="hero__panel" aria-label="Store highlights">
+    <div class="hero__stat">
+      <strong>{{ 'general.stat_products' | t }}</strong>
+      <small>{{ 'general.stat_products_copy' | t }}</small>
+    </div>
+    <div class="hero__stat">
+      <strong>{{ 'general.stat_shipping' | t }}</strong>
+      <small>{{ 'general.stat_shipping_copy' | t }}</small>
+    </div>
+    <div class="hero__stat">
+      <strong>{{ 'general.stat_support' | t }}</strong>
+      <small>{{ 'general.stat_support_copy' | t }}</small>
+    </div>
+  </div>
+</section>
+
+<section class="category-strip" id="collections" data-category-strip aria-label="Shop by category">
+  <div class="category-strip__header">
+    <h2 class="category-strip__title">Shop by category</h2>
+    <p class="category-strip__note">Hover to explore subcategories and instantly see matching products below.</p>
+  </div>
+  <!-- Buttons and submenus are populated by theme.js -->
+</section>
+
+<section class="product-showcase" aria-label="Featured items">
+  <div class="product-showcase__header">
+    <h3 class="product-showcase__title">Featured picks ready to ship</h3>
+    <p class="product-showcase__filter">Showing: <strong data-active-filter>All</strong></p>
+  </div>
+  <div class="product-grid" data-product-grid></div>
+</section>
+
+<div class="product-modal" data-product-modal role="dialog" aria-modal="true" aria-label="Product quick view">
+  <div class="product-modal__backdrop" data-modal-backdrop></div>
+  <div class="product-modal__dialog">
+    <button class="product-modal__close" aria-label="Close" data-modal-close>&times;</button>
+    <div class="product-modal__media">
+      <img src="" alt="" data-modal-image>
+    </div>
+    <div class="product-modal__body">
+      <p class="product-modal__category" data-modal-category></p>
+      <h3 class="product-modal__title" data-modal-title></h3>
+      <p class="product-modal__price" data-modal-price></p>
+      <div class="product-modal__options" data-modal-options></div>
+      <label for="modal-quantity">Quantity</label>
+      <input id="modal-quantity" data-modal-quantity type="number" min="1" value="1">
+      <div class="product-modal__actions">
+        <button class="button-secondary" data-add-cart>Add to cart</button>
+        <button class="button-primary" data-buy-now>Buy now</button>
+      </div>
+      <p class="product-modal__summary" data-modal-summary></p>
+      <div class="checkout-preview" data-checkout-preview>
+        <img src="" alt="Selected product" data-checkout-image>
+        <div class="checkout-preview__details">
+          <strong data-checkout-title></strong>
+          <p data-checkout-meta></p>
+          <p data-checkout-price></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  {{ 'general.footer_note' | t }}
+</footer>

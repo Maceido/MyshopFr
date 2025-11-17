@@ -4,7 +4,8 @@
     <div class="brand">{{ shop.name }}</div>
     <button class="top-nav__mobile-toggle" aria-expanded="false" aria-controls="top-nav-list">☰</button>
     <ul id="top-nav-list" class="top-nav__list">
-      {% assign menu = linklists[section.settings.menu] %}
+      {% assign chosen_menu = section.settings.menu | default: settings.main_menu %}
+      {% assign menu = linklists[chosen_menu] %}
       {% if menu and menu.links.size > 0 %}
         {% for link in menu.links %}
           <li class="top-nav__item">
@@ -19,24 +20,10 @@
           </li>
         {% endfor %}
       {% else %}
-        <!-- Fallback static menu if no menu configured -->
-        <li class="top-nav__item">
-          <a href="#" class="top-nav__link">Women's Clothing</a>
-          <ul class="top-nav__submenu">
-            <li><a href="#">Outerwear & Jackets</a></li>
-            <li><a href="#">Blazers</a></li>
-            <li><a href="#">Wool & Blend</a></li>
-            <li><a href="#">Women's Padded Jackets</a></li>
-            <li><a href="#">Woman Trench</a></li>
-            <li><a href="#">Basic Jacket</a></li>
-            <li><a href="#">Leather & Suede</a></li>
-            <li><a href="#">Real Fur</a></li>
-          </ul>
-        </li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Pet Supplies</a></li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Home, Garden & Furniture</a></li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Health, Beauty & Hair</a></li>
-        <li class="top-nav__item"><a href="#" class="top-nav__link">Jewelry & Watches</a></li>
+        <li class="top-nav__item"><a href="/" class="top-nav__link">Home</a></li>
+        <li class="top-nav__item"><a href="/collections/all" class="top-nav__link">Shop all</a></li>
+        <li class="top-nav__item"><a href="#collections" class="top-nav__link">Categories</a></li>
+        <li class="top-nav__item"><a href="/pages/support" class="top-nav__link">Support</a></li>
       {% endif %}
 
       <li class="top-nav__item top-nav__more" aria-hidden="true">

@@ -1,0 +1,75 @@
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <div class="site-header__brand">
+      <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url: width: 140 }}" alt="{{ section.settings.logo.alt | default: shop.name }}">
+        {% else %}
+          <span class="site-header__logo-text">Gents</span>
+        {% endif %}
+      </a>
+      <a class="site-header__address" href="{% if customer %}{{ routes.account_addresses_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+        {% if customer and customer.default_address %}
+          Delivering to {{ customer.default_address.city }} {{ customer.default_address.zip | default: customer.default_address.zip_code }}
+        {% else %}
+          Set delivery location
+        {% endif %}
+      </a>
+    </div>
+
+    <form class="site-header__search" role="search" action="{{ routes.search_url }}" method="get">
+      <input type="search" name="q" placeholder="Search products" aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="site-header__actions">
+      <div class="site-header__locale">
+        {% if localization.available_languages.size > 1 %}
+          <details class="locale-switcher">
+            <summary aria-label="{{ 'general.language' | default: 'Language' }}">{{ localization.language.iso_code | upcase }}</summary>
+            <div class="locale-switcher__menu">
+              {% form 'localization' %}
+                {% for language in localization.available_languages %}
+                  <button type="submit" name="locale_code" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>{{ language.endonym_name | default: language.name }}</button>
+                {% endfor %}
+              {% endform %}
+            </div>
+          </details>
+        {% else %}
+          <span class="locale-switcher locale-switcher--single">{{ localization.language.iso_code | upcase }}</span>
+        {% endif %}
+      </div>
+
+      <a class="site-header__link" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">Orders</a>
+
+      <a class="site-header__link site-header__link--account" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+        {% if customer %}
+          Hello, {{ customer.first_name }}
+        {% else %}
+          Sign in / Sign up
+        {% endif %}
+      </a>
+
+      <a class="site-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        <span class="site-header__cart-icon">🛒</span>
+        <span class="site-header__cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header bar",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    }
+  ],
+  "presets": [
+    {"name": "Header bar"}
+  ]
+}
+{% endschema %}

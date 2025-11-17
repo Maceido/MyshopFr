@@ -1,0 +1,74 @@
+<div class="sidebar__title">Your account</div>
+<nav class="sidebar__menu sidebar__menu--accounts">
+  <a class="sidebar__link sidebar__link--soft" href="{{ routes.account_login_url }}">Sign In</a>
+  <a class="sidebar__link sidebar__link--soft" href="{{ routes.account_register_url }}">Create Account</a>
+  <a class="sidebar__link sidebar__link--soft" href="{{ routes.account_url }}">My Account</a>
+</nav>
+
+<div class="sidebar__title sidebar__title--spaced">Shop by category</div>
+<nav class="sidebar__menu" aria-label="Category navigation">
+  {% assign default_categories = [
+    'Clothing & Apparel|clothing-apparel',
+    'Electronics|electronics',
+    'Home, Garden & Furniture|home-garden-furniture',
+    'Sports & Outdoors|sports-outdoors',
+    'Toys, Kids & Babies|toys',
+    'Pets|pets',
+    'Beauty, Health & Personal Care|beauty-health-personal-care',
+    'Home Improvement & Tools|home-improvement',
+    'Automotive & Motorcycle|automotive-motorcycle',
+    'Jewelry & Watches|jewelry-watches',
+    'Bags & Shoes|bags-shoes',
+    'Food & Grocery|food-grocery',
+    'Industrial & Scientific|industrial-scientific'
+  ] %}
+
+  {% if section.blocks.size > 0 %}
+    {% for block in section.blocks %}
+      {% assign handle = block.settings.handle | default: block.settings.title | handleize %}
+      <a class="sidebar__link" href="{{ routes.collections_url }}/{{ handle }}">{{ block.settings.title }}</a>
+    {% endfor %}
+  {% else %}
+    {% for entry in default_categories %}
+      {% assign parts = entry | split: '|' %}
+      <a class="sidebar__link" href="{{ routes.collections_url }}/{{ parts[1] }}">{{ parts[0] }}</a>
+    {% endfor %}
+  {% endif %}
+</nav>
+
+{% schema %}
+{
+  "name": "Left category navigation",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category_link",
+      "name": "Category",
+      "settings": [
+        {"type": "text", "id": "title", "label": "Title", "default": "Clothing & Apparel"},
+        {"type": "text", "id": "handle", "label": "Collection handle", "default": "clothing-apparel"}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Left category navigation",
+      "blocks": [
+        {"type": "category_link", "settings": {"title": "Clothing & Apparel", "handle": "clothing-apparel"}},
+        {"type": "category_link", "settings": {"title": "Electronics", "handle": "electronics"}},
+        {"type": "category_link", "settings": {"title": "Home, Garden & Furniture", "handle": "home-garden-furniture"}},
+        {"type": "category_link", "settings": {"title": "Sports & Outdoors", "handle": "sports-outdoors"}},
+        {"type": "category_link", "settings": {"title": "Toys, Kids & Babies", "handle": "toys"}},
+        {"type": "category_link", "settings": {"title": "Pets", "handle": "pets"}},
+        {"type": "category_link", "settings": {"title": "Beauty, Health & Personal Care", "handle": "beauty-health-personal-care"}},
+        {"type": "category_link", "settings": {"title": "Home Improvement & Tools", "handle": "home-improvement"}},
+        {"type": "category_link", "settings": {"title": "Automotive & Motorcycle", "handle": "automotive-motorcycle"}},
+        {"type": "category_link", "settings": {"title": "Jewelry & Watches", "handle": "jewelry-watches"}},
+        {"type": "category_link", "settings": {"title": "Bags & Shoes", "handle": "bags-shoes"}},
+        {"type": "category_link", "settings": {"title": "Food & Grocery", "handle": "food-grocery"}},
+        {"type": "category_link", "settings": {"title": "Industrial & Scientific", "handle": "industrial-scientific"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

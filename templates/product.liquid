@@ -1,0 +1,125 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+<section class="product-page" aria-label="Product details">
+  <div class="product-page__media">
+    {% if product.media.size > 0 %}
+      <div class="product-gallery">
+        {% for media in product.media %}
+          {% if media.preview_image %}
+            <div class="product-gallery__item{% if forloop.first %} is-active{% endif %}" data-gallery-thumb>
+              <img src="{{ media.preview_image | img_url: '360x' }}" alt="{{ media.alt | default: product.title }}">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="product-hero-image" data-hero-image>
+        <img src="{{ current_variant.featured_image | img_url: '720x' | default: product.featured_image | img_url: '720x' }}" alt="{{ product.title }}">
+      </div>
+    {% else %}
+      <div class="product-hero-image">
+        <img src="{{ product.featured_image | img_url: '720x' }}" alt="{{ product.title }}">
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-page__details">
+    <h1 class="product-page__title">{{ product.title }}</h1>
+    <div class="product-page__price" data-product-price>
+      {{ current_variant.price | money }}
+      {% if current_variant.compare_at_price > current_variant.price %}
+        <span class="product-page__compare">{{ current_variant.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+    <p class="product-page__availability" data-availability>
+      {% if current_variant.available %}In stock{% else %}Out of stock{% endif %}
+    </p>
+
+    {% form 'product', product, id: 'product-form', data-product-form: '' %}
+      <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-input>
+      {% for option in product.options_with_values %}
+        <label class="product-page__label" for="option-{{ forloop.index }}">{{ option.name }}</label>
+        <select id="option-{{ forloop.index }}" name="options[{{ option.name }}]" data-variant-option data-option-index="{{ forloop.index0 }}">
+          {% for value in option.values %}
+            <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+          {% endfor %}
+        </select>
+      {% endfor %}
+
+      <label class="product-page__label" for="quantity">Quantity</label>
+      <input id="quantity" class="product-page__quantity" type="number" name="quantity" value="1" min="1" data-quantity-input>
+
+      <div class="product-page__actions">
+        <button class="button-primary" type="submit" name="add" {% unless current_variant.available %}disabled{% endunless %}>Add to cart</button>
+        <a class="button-secondary" href="/cart/{{ current_variant.id }}:1?checkout=true" data-buy-now {% unless current_variant.available %}aria-disabled="true"{% endunless %}>Buy Now</a>
+      </div>
+    {% endform %}
+
+    <div class="product-page__meta">
+      <h2>Details</h2>
+      <div class="rte">{{ product.description }}</div>
+      {% if product.metafields.custom.specs != blank %}
+        <div class="product-specs">
+          <h3>Specs</h3>
+          <p>{{ product.metafields.custom.specs }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script id="ProductData" type="application/json">
+  {{ product | json }}
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const form = document.querySelector('[data-product-form]');
+    const priceEl = document.querySelector('[data-product-price]');
+    const availabilityEl = document.querySelector('[data-availability]');
+    const variantInput = document.querySelector('[data-variant-input]');
+    const buyNowBtn = document.querySelector('[data-buy-now]');
+    const heroImage = document.querySelector('[data-hero-image] img');
+    const quantityInput = document.querySelector('[data-quantity-input]');
+    const productDataEl = document.getElementById('ProductData');
+    if(!form || !productDataEl) return;
+    const productData = JSON.parse(productDataEl.textContent);
+
+    function findVariant(){
+      const selectedOptions = Array.from(form.querySelectorAll('[data-variant-option]')).map(sel => sel.value);
+      return productData.variants.find(v => JSON.stringify(v.options) === JSON.stringify(selectedOptions));
+    }
+
+    function formatMoney(cents){
+      const locale = '{{ shop.locale }}' || 'en';
+      const currency = '{{ shop.currency }}' || 'USD';
+      return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(cents / 100);
+    }
+
+    function updateUI(variant){
+      if(!variant) return;
+      variantInput.value = variant.id;
+      priceEl.innerHTML = formatMoney(variant.price);
+      if(variant.compare_at_price && variant.compare_at_price > variant.price){
+        priceEl.innerHTML += ` <span class="product-page__compare">${formatMoney(variant.compare_at_price)}</span>`;
+      }
+      availabilityEl.textContent = variant.available ? 'In stock' : 'Out of stock';
+      form.querySelector('button[type="submit"]').disabled = !variant.available;
+      if(buyNowBtn){
+        const qty = quantityInput && quantityInput.value ? quantityInput.value : 1;
+        buyNowBtn.href = `/cart/${variant.id}:${qty}?checkout=true`;
+        buyNowBtn.setAttribute('aria-disabled', variant.available ? 'false' : 'true');
+      }
+      if(heroImage && variant.featured_image){
+        heroImage.src = variant.featured_image.src.replace(/\.(\w+)$/,'_720x.$1');
+        heroImage.alt = variant.title;
+      }
+    }
+
+    form.addEventListener('change', function(evt){
+      if(evt.target.matches('[data-variant-option]') || evt.target.matches('[data-quantity-input]')){
+        const variant = findVariant();
+        updateUI(variant);
+      }
+    });
+
+    updateUI(findVariant());
+  });
+</script>

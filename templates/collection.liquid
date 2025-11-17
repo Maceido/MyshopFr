@@ -1,0 +1,25 @@
+<section class="collection-hero" aria-label="Collection header">
+  <h1 class="collection-hero__title">{{ collection.title }}</h1>
+  {% if collection.description != blank %}
+    <p class="collection-hero__description">{{ collection.description }}</p>
+  {% endif %}
+</section>
+
+<div class="product-grid" data-collection-grid>
+  {% for product in collection.products %}
+    <div class="product-card">
+      <a href="{{ product.url }}">
+        <img src="{{ product.featured_image | img_url: '360x' }}" alt="{{ product.title }}" class="product-card__image">
+        <h3>{{ product.title }}</h3>
+        <p>
+          {{ product.price | money }}
+          {% if product.compare_at_price_max > product.price %}
+            <span class="product-page__compare">{{ product.compare_at_price_max | money }}</span>
+          {% endif %}
+        </p>
+      </a>
+    </div>
+  {% else %}
+    <div class="empty-state">No products found in this collection yet.</div>
+  {% endfor %}
+</div>

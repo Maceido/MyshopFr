@@ -1,4 +1,3 @@
-{% assign collection_handle = collection.handle %}
 <section class="collection-hero" aria-label="Collection header">
   <h1 class="collection-hero__title">{{ collection.title }}</h1>
   {% if collection.description != blank %}
@@ -7,7 +6,7 @@
 </section>
 
 <div class="product-grid" data-collection-grid>
-  {% for product in collections[collection_handle].products %}
+  {% for product in collection.products %}
     <div class="product-card">
       <a href="{{ product.url }}">
         <img src="{{ product.featured_image | img_url: '360x' }}" alt="{{ product.title }}" class="product-card__image">

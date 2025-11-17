@@ -8,115 +8,94 @@
   <link rel="stylesheet" href="../assets/top-nav.css">
 </head>
 <body class="theme-shell">
-  <div class="theme-shell__inner">
-    <section class="category-strip" id="collections" data-category-strip aria-label="Shop by category">
-      <div class="category-strip__header">
-        <h2 class="category-strip__title">Shop by category</h2>
-        <p class="category-strip__note">Hover a category to reveal subcategories, then click to jump into the matching Shopify collection.</p>
-      </div>
-    </section>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Preview navigation">
+      <div class="sidebar__title">Your account</div>
+      <nav class="sidebar__menu sidebar__menu--accounts">
+        <a class="sidebar__link sidebar__link--soft" href="#">Sign In</a>
+        <a class="sidebar__link sidebar__link--soft" href="#">Create Account</a>
+        <a class="sidebar__link sidebar__link--soft" href="#">My Account</a>
+      </nav>
+      <div class="sidebar__title sidebar__title--spaced">Shop by category</div>
+      <nav class="sidebar__menu">
+        <a class="sidebar__link" href="#">Clothing, Shoes, Jewelry &amp; Watches</a>
+        <a class="sidebar__link" href="#">Electronics</a>
+        <a class="sidebar__link" href="#">Computers &amp; Office</a>
+        <a class="sidebar__link" href="#">Sports &amp; Outdoors</a>
+        <a class="sidebar__link" href="#">Automotive</a>
+      </nav>
+    </aside>
 
-    <nav class="top-nav" aria-label="Main navigation">
-      <div class="top-nav__inner">
-        <div class="brand">MyshopFr</div>
-        <button class="top-nav__mobile-toggle" aria-expanded="false" aria-controls="top-nav-list">☰</button>
-        <ul id="top-nav-list" class="top-nav__list">
-          <li class="top-nav__item"><a class="top-nav__link" href="/">Home</a></li>
-          <li class="top-nav__item"><a class="top-nav__link" href="/collections/all">Shop all</a></li>
-          <li class="top-nav__item"><a class="top-nav__link" href="#collections">Categories</a></li>
-          <li class="top-nav__item"><a class="top-nav__link" href="/pages/support">Support</a></li>
-          <li class="top-nav__item top-nav__more" aria-hidden="true">
-            <button class="top-nav__more-toggle" aria-expanded="false">More ▾</button>
-            <ul class="top-nav__more-list" aria-label="More links"></ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <main class="content">
+      <div class="theme-shell__inner">
+        <div class="announcement-bar">Welcome to MyshopFr!</div>
 
-    <div class="announcement-bar">Welcome to MyshopFr!</div>
-
-    <section class="hero" aria-label="Storefront introduction">
-      <div>
-        <p class="hero__eyebrow">Curated dropshipping collections</p>
-        <h1>White-glove shopping experience without the clutter</h1>
-        <p>Keep everything bright, modern, and trustworthy with hoverable categories, precise filters, and a no-surprises checkout preview.</p>
-        <div class="hero__cta-group">
-          <a class="cta" href="#">Shop best sellers</a>
-          <a class="cta secondary" href="#collections">Browse categories</a>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Clean, professional tone</h3>
-            <p>Crisp spacing, white background, and friendly accents that stay far from “scammy.”</p>
-          </article>
-          <article class="feature-card">
-            <h3>Hover to drill down</h3>
-            <p>Every collection reveals hand-picked subcategories to keep shoppers oriented.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Quick-buy overlay</h3>
-            <p>Customers can set quantity, options, and see totals without leaving the page.</p>
-          </article>
-        </div>
-      </div>
-      <div class="hero__panel" aria-label="Store highlights">
-        <div class="hero__stat">
-          <strong>10 curated categories</strong>
-          <small>From Automotive to Apparel.</small>
-        </div>
-        <div class="hero__stat">
-          <strong>Instant product updates</strong>
-          <small>Filter without ever opening a new page.</small>
-        </div>
-        <div class="hero__stat">
-          <strong>Transparent checkout</strong>
-          <small>Buy now preview with options & totals.</small>
-        </div>
-      </div>
-    </section>
-
-    <section class="product-showcase" aria-label="Featured items">
-      <div class="product-showcase__header">
-        <h3 class="product-showcase__title">Featured picks ready to ship</h3>
-        <p class="product-showcase__filter">Showing: <strong data-active-filter>All</strong></p>
-      </div>
-      <div class="product-grid" data-product-grid></div>
-    </section>
-
-    <div class="product-modal" data-product-modal role="dialog" aria-modal="true" aria-label="Product quick view">
-      <div class="product-modal__backdrop" data-modal-backdrop></div>
-      <div class="product-modal__dialog">
-        <button class="product-modal__close" aria-label="Close" data-modal-close>&times;</button>
-        <div class="product-modal__media">
-          <img src="" alt="" data-modal-image>
-        </div>
-        <div class="product-modal__body">
-          <p class="product-modal__category" data-modal-category></p>
-          <h3 class="product-modal__title" data-modal-title></h3>
-          <p class="product-modal__price" data-modal-price></p>
-          <div class="product-modal__options" data-modal-options></div>
-          <label for="modal-quantity-preview">Quantity</label>
-          <input id="modal-quantity-preview" data-modal-quantity type="number" min="1" value="1">
-          <div class="product-modal__actions">
-            <button class="button-secondary" data-add-cart>Add to cart</button>
-            <button class="button-primary" data-buy-now>Buy now</button>
-          </div>
-          <p class="product-modal__summary" data-modal-summary></p>
-          <div class="checkout-preview" data-checkout-preview>
-            <img src="" alt="Selected product" data-checkout-image>
-            <div class="checkout-preview__details">
-              <strong data-checkout-title></strong>
-              <p data-checkout-meta></p>
-              <p data-checkout-price></p>
+        <section class="hero" aria-label="Storefront introduction">
+          <div>
+            <p class="hero__eyebrow">Curated dropshipping collections</p>
+            <h1>Left-pinned navigation with bright, trustworthy styling</h1>
+            <p>Keep everything white and warm, with categories always on the left and zero right-side menus.</p>
+            <div class="hero__cta-group">
+              <a class="cta" href="/collections/all">Shop best sellers</a>
+            </div>
+            <div class="feature-grid">
+              <article class="feature-card">
+                <h3>Sticky sidebar</h3>
+                <p>Navigation stays fixed as shoppers scroll collections and products.</p>
+              </article>
+              <article class="feature-card">
+                <h3>Variant-ready product page</h3>
+                <p>Amazon-style media, options, and live pricing keep things simple.</p>
+              </article>
+              <article class="feature-card">
+                <h3>Account-first</h3>
+                <p>Sign in, create account, and account dashboard links live in the sidebar.</p>
+              </article>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+          <div class="hero__panel" aria-label="Store highlights">
+            <div class="hero__stat">
+              <strong>Single navigation</strong>
+              <small>Sidebar only — no right-side menus.</small>
+            </div>
+            <div class="hero__stat">
+              <strong>Buy now ready</strong>
+              <small>Direct-to-checkout links update per variant.</small>
+            </div>
+            <div class="hero__stat">
+              <strong>Account themed</strong>
+              <small>Custom login & register pages match the palette.</small>
+            </div>
+          </div>
+        </section>
 
-    <footer class="page-footer">
-      Designed for modern dropshipping — customize colors, menus, and sections in Theme settings.
-    </footer>
+        <section class="product-page" aria-label="Product details preview">
+          <div class="product-page__media">
+            <div class="product-gallery">
+              <div class="product-gallery__item is-active"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=80" alt="Preview"></div>
+              <div class="product-gallery__item"><img src="https://images.unsplash.com/photo-1528701800489-20be9e0c5a97?auto=format&fit=crop&w=400&q=80" alt="Preview"></div>
+            </div>
+            <div class="product-hero-image" data-hero-image>
+              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Preview">
+            </div>
+          </div>
+          <div class="product-page__details">
+            <p class="product-page__eyebrow">Amazon-inspired view</p>
+            <h1 class="product-page__title">Everyday Court Sneakers</h1>
+            <div class="product-page__price">$72.00 <span class="product-page__compare">$98.00</span></div>
+            <p class="product-page__availability">In stock</p>
+            <div class="product-page__meta">
+              <h2>Details</h2>
+              <p class="rte">A clean product layout with variants, live price updates, and buy-now links.</p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="page-footer">
+          Designed for modern dropshipping — customize colors, menus, and sections in Theme settings.
+        </footer>
+      </div>
+    </main>
   </div>
   <script src="../assets/top-nav.js"></script>
   <script src="../assets/theme.js"></script>

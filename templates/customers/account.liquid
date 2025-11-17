@@ -1,0 +1,26 @@
+<div class="account-shell">
+  <div class="account-card">
+    <h1>My account</h1>
+    <p>Welcome back, {{ customer.first_name | default: customer.email }}.</p>
+
+    <div class="account-links">
+      <a href="/account/logout">Sign out</a>
+      <a href="/account/orders">Orders</a>
+    </div>
+
+    <h2>Order history</h2>
+    {% if customer.orders_count > 0 %}
+      <ul class="account-orders">
+        {% for order in customer.orders %}
+          <li>
+            <div><strong>Order {{ order.name }}</strong> – {{ order.processed_at | date: "%b %d, %Y" }}</div>
+            <div>{{ order.financial_status_label }} · {{ order.fulfillment_status_label }} · {{ order.total_price | money }}</div>
+            <a href="{{ order.customer_url }}">View details</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You don't have any orders yet.</p>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title | default: shop.name }} – {{ shop.name }}</title>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body class="theme-shell">
+  <div class="layout">
+    <aside class="sidebar" aria-label="Shop categories">
+      <div class="sidebar__title">Your account</div>
+      <nav class="sidebar__menu sidebar__menu--accounts">
+        <a class="sidebar__link sidebar__link--soft" href="/account/login">Sign In</a>
+        <a class="sidebar__link sidebar__link--soft" href="/account/register">Create Account</a>
+        <a class="sidebar__link sidebar__link--soft" href="/account">My Account</a>
+      </nav>
+
+      <div class="sidebar__title sidebar__title--spaced">Shop by category</div>
+      <nav class="sidebar__menu">
+        <a class="sidebar__link" href="/collections/clothing-shoes-jewelry-watches">Clothing, Shoes, Jewelry &amp; Watches</a>
+        <a class="sidebar__link" href="/collections/books-media">Books &amp; Media</a>
+        <a class="sidebar__link" href="/collections/movies-music-games">Movies, Music &amp; Games</a>
+        <a class="sidebar__link" href="/collections/electronics">Electronics</a>
+        <a class="sidebar__link" href="/collections/computers-office">Computers &amp; Office</a>
+        <a class="sidebar__link" href="/collections/smart-home">Smart Home</a>
+        <a class="sidebar__link" href="/collections/home-garden-tools">Home, Garden &amp; Tools</a>
+        <a class="sidebar__link" href="/collections/pet-supplies">Pet Supplies</a>
+        <a class="sidebar__link" href="/collections/food-grocery">Food &amp; Grocery</a>
+        <a class="sidebar__link" href="/collections/beauty-health">Beauty &amp; Health</a>
+        <a class="sidebar__link" href="/collections/toys-kids-baby">Toys, Kids &amp; Baby</a>
+        <a class="sidebar__link" href="/collections/handmade-crafts">Handmade &amp; Crafts</a>
+        <a class="sidebar__link" href="/collections/sports-outdoors">Sports &amp; Outdoors</a>
+        <a class="sidebar__link" href="/collections/automotive">Automotive</a>
+        <a class="sidebar__link" href="/collections/industrial-scientific">Industrial &amp; Scientific</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="theme-shell__inner">
+        {{ content_for_layout }}
+      </div>
+    </main>
+  </div>
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>

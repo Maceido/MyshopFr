@@ -1,0 +1,24 @@
+<div class="account-shell">
+  <div class="account-card">
+    <h1>Create account</h1>
+    <p>Set up your profile to checkout faster.</p>
+
+    {% form 'create_customer' %}
+      {% if form.errors %}
+        <div class="form-errors">{{ form.errors | default_errors }}</div>
+      {% endif %}
+      <div class="account-form">
+        <input type="text" name="customer[first_name]" placeholder="First name" required>
+        <input type="text" name="customer[last_name]" placeholder="Last name" required>
+        <input type="email" name="customer[email]" placeholder="Email" required>
+        <input type="password" name="customer[password]" placeholder="Password" required>
+        <button type="submit">Create Account</button>
+      </div>
+    {% endform %}
+
+    <div class="account-links">
+      <a href="/account/login">Sign In</a>
+      <a href="/account">My Account</a>
+    </div>
+  </div>
+</div>

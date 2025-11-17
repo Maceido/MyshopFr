@@ -8,7 +8,52 @@ body.theme-shell{
 .theme-shell__inner{
   max-width:1200px;
   margin:0 auto;
-  padding:0 18px 80px;
+  padding:0 22px 80px;
+}
+.layout{
+  display:grid;
+  grid-template-columns:250px 1fr;
+  min-height:100vh;
+  background:#f8fafc;
+}
+.sidebar{
+  background:#fff;
+  padding:20px 18px;
+  border-right:1px solid #e2e8f0;
+  height:100vh;
+  overflow-y:auto;
+  position:sticky;
+  top:0;
+  box-shadow:4px 0 22px rgba(15,23,42,0.06);
+}
+.sidebar__title{
+  font-weight:800;
+  font-size:18px;
+  margin:0 0 14px;
+  color:#0f172a;
+}
+.sidebar__menu{display:flex;flex-direction:column;gap:8px;}
+.sidebar__link{
+  display:block;
+  padding:10px 12px;
+  border-radius:10px;
+  color:#0f172a;
+  text-decoration:none;
+  font-weight:600;
+  border:1px solid #e2e8f0;
+  background:#fff;
+  transition:background .12s ease, color .12s ease, box-shadow .12s ease, transform .12s ease;
+}
+.sidebar__link:hover{
+  background:#fff7ed;
+  color:#c2410c;
+  border-color:#f97316;
+  box-shadow:0 10px 24px rgba(249,115,22,0.14);
+  transform:translateX(2px);
+}
+.content{
+  background:#fdfefe;
+  padding:18px 0 32px;
 }
 .announcement-bar{
   background:#f97316;
@@ -108,6 +153,9 @@ body.theme-shell{
   justify-content:space-between;
   margin:40px 0 16px;
 }
+.collection-hero{margin:18px 0 10px;}
+.collection-hero__title{margin:0;font-size:32px;}
+.collection-hero__description{margin:6px 0 0;color:#475569;line-height:1.6;}
 .section-heading h2{
   margin:0;
   font-size:26px;
@@ -241,6 +289,14 @@ body.theme-shell{
   gap:16px;
   margin-top:12px;
 }
+.product-card > a{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+  padding:14px 14px 16px;
+}
+.product-card > a h3{margin:12px 0 6px;font-size:17px;}
+.product-card > a p{margin:0;color:#475569;font-weight:700;}
 .product-card{
   background:#fff;
   border:1px solid #e2e8f0;
@@ -311,6 +367,12 @@ body.theme-shell{
 .checkout-preview__details strong{display:block;margin-bottom:4px;color:#0f172a;}
 
 .empty-state{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:16px;padding:28px;text-align:center;color:#475569;}
+
+@media (max-width: 960px){
+  .layout{grid-template-columns:1fr;}
+  .sidebar{position:relative;height:auto;top:auto;border-right:0;border-bottom:1px solid #e2e8f0;box-shadow:none;}
+  .content{padding-top:10px;}
+}
 
 @media (max-width: 720px){
   .hero h1{font-size:34px;}
